@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Registro de niveles de luz</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        padding-top: 40px;
+    }
+    section {
+        background: white;
+        padding: 20px;
+        border-radius: 12px;
+        width: 330px;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        text-align: center;
+    }
+    input {
+        padding: 8px;
+        width: 85%;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        margin: 6px 0;
+        font-size: 16px;
+    }
+    button {
+        padding: 10px 20px;
+        background: #0078ff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+    }
+    button:hover {
+        background: #005fcc;
+    }
+    .output {
+        margin-top: 15px;
+        font-size: 18px;
+        font-weight: bold;
+        white-space: pre-line;
+    }
+</style>
+</head>
+<body>
+<section id="e5">
+<h3>Niveles de luz (lux)</h3>
+<p>Ingresa valores. Escribe "no" para terminar.</p>
+<input id="luxVal" placeholder="lux o 'no'">
+<button onclick="ej5()">Agregar</button>
+<div class="output" id="out5"></div>
+</section>
+<script>
+let lux = [];
+function ej5() {
+    let entrada = document.getElementById("luxVal").value.trim();
+    document.getElementById("luxVal").value = "";
+
+    if (entrada.toLowerCase() !== "no") {
+        let num = parseFloat(entrada);
+        if (!isNaN(num)) lux.push(num);
+    }
+
+    let out = "Valores ingresados: " + lux.join(", ");
+    if (lux.some(v => v < 5)) {
+        out += "\nNoche profunda detectada.";
+    }
+    document.getElementById("out5").innerText = out;
+}
+</script>
+</body>
+</html>
